@@ -1,25 +1,34 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, View, Text } from 'react-native';
 import { Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-function WelcomeScreen(props) {
+
+
+const WelcomeScreen = (props) => {
+    const navigation = useNavigation();
     return (
         <ImageBackground 
             style={styles.background}
             source={require("../assets/background.png")}>
             
-            <Image 
-            style={styles.logo}
-            source={require("../assets/BSOLogo.png")}>
+            <View style={styles.stripe} >
+                <Image 
+                style={styles.logo}
+                source={require("../assets/BSOLogo.png")}>
 
-            </Image>
+                </Image>
+            </View>
+
             <View style={styles.loginButton}>
-                <Text style={styles.centerByMaringLNR}>
+                <Text style={[styles.centerByMaringLNR, styles.blackColor]}>
                     Login
                 </Text>
             </View>
             <View style={styles.registerButton}>
-                <Text style={styles.centerByMaringLNR}>
+                <Text 
+                    onPress={()=> navigation.navigate('Register')}
+                    style={[styles.centerByMaringLNR, styles.whiteColor]}>
                     Register
                 </Text>
             </View>
@@ -30,23 +39,32 @@ function WelcomeScreen(props) {
 const styles = StyleSheet.create({
     background: {
         flex: 1,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-end',
     },
     loginButton: {
         width: '100%',
         height: 70,
-        backgroundColor: 'lightgrey',
+        backgroundColor: 'rgba(255,223,0, 0.7)',
     },
     registerButton: {
         width: '100%',
         height: 70,
-        backgroundColor: '#fff',
+        backgroundColor: 'rgba(0,0,0, 0.8)',
     },
     logo: {
-        width: '100%',
+        width: '95%',
         height: 100,
+        marginTop: 'auto',
+        marginBottom: 'auto',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+    },
+    stripe: {
+        width: '100%',
+        height: 150,
         position: 'absolute',
-        top: '15%'
+        top: '15%',
+        backgroundColor: 'rgba(245,245,245, 0.5)'
     },
     centerByMaringLNR: {
         marginLeft: 'auto', 
@@ -55,7 +73,14 @@ const styles = StyleSheet.create({
         marginBottom: 'auto',
         fontSize: 25,
         fontWeight: 'bold'
+    },
+    whiteColor: {
+        color: 'white'
+    },
+    blackColor: {
+        color: 'black'
     }
+
 })
 
 export default WelcomeScreen;

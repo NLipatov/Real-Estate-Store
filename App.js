@@ -1,8 +1,20 @@
 import React from 'react';
-import { View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import RegisterScreen from './app/screens/RegisterScreen';
 import WelcomeScreen from './app/screens/WelcomeScreen';
 
 
+const Stack = createNativeStackNavigator();
+const logger = (text) => console.log(text);
+
 export default function App() {
-  return <WelcomeScreen/>
+  return(
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name='Welcome' component={WelcomeScreen} options={{headerShown: false}} />
+        <Stack.Screen name='Register' component={RegisterScreen}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  ) 
 }
