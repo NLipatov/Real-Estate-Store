@@ -21,7 +21,9 @@ const WelcomeScreen = (props) => {
             </View>
 
             <View style={styles.loginButton}>
-                <Text style={[styles.centerByMaringLNR, styles.blackColor]}>
+                <Text 
+                    onPress={() => navigation.navigate('Login')}
+                    style={[styles.centerByMaringLNR, styles.blackColor]}>
                     Login
                 </Text>
             </View>

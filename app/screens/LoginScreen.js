@@ -2,7 +2,7 @@ import React from 'react';
 import {SafeAreaView ,View, Text, TextInput, StyleSheet, Button, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const RegisterScreen = () => {
+const LoginScreen = () => {
     const navigation = useNavigation();
 
     const [login, onChangeLogin] = React.useState('');
@@ -35,9 +35,8 @@ const RegisterScreen = () => {
                 onPress={(e) =>
                     {
                         console.log(login, password);
-                        navigation.navigate('Welcome');
                     }}
-                title="Submit"
+                title="Log in"
                 disabled={buttonIsActive()}
                 />
 
@@ -54,4 +53,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default RegisterScreen;
+export default LoginScreen;
