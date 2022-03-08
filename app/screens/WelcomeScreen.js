@@ -1,6 +1,6 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, View, Text } from 'react-native';
-import { Image } from 'react-native';
+import { ImageBackground, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { Image} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -20,20 +20,25 @@ const WelcomeScreen = (props) => {
                 </Image>
             </View>
 
-            <View style={styles.loginButton}>
+            <TouchableOpacity 
+                activeOpacity={0.8}
+                style={styles.loginButton}
+                onPress={() => navigation.navigate('Login')}>
                 <Text 
-                    onPress={() => navigation.navigate('Login')}
+                    // onPress={() => navigation.navigate('Login')}
                     style={[styles.centerByMaringLNR, styles.blackColor]}>
                     Login
                 </Text>
-            </View>
-            <View style={styles.registerButton}>
+            </TouchableOpacity>
+            <TouchableOpacity 
+                activeOpacity={0.8}
+                style={styles.registerButton}
+                onPress={()=> navigation.navigate('Register')}>
                 <Text 
-                    onPress={()=> navigation.navigate('Register')}
-                    style={[styles.centerByMaringLNR, styles.whiteColor]}>
+                                        style={[styles.centerByMaringLNR, styles.whiteColor]}>
                     Register
                 </Text>
-            </View>
+            </TouchableOpacity>
         </ImageBackground>
     );
 }
@@ -74,7 +79,7 @@ const styles = StyleSheet.create({
         marginTop: 'auto',
         marginBottom: 'auto',
         fontSize: 25,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     },
     whiteColor: {
         color: 'white'
