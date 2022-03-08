@@ -1,12 +1,36 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView ,View, Text, TextInput, StyleSheet, Button, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const LoginScreen = () => {
+const LoginScreen = ({route}) => {
+    useEffect(() => {
+        console.log('effect');
+      }, [route]);
+
+    const routeParam = route.params;
+
     const navigation = useNavigation();
 
     const [login, onChangeLogin] = React.useState('');
     const [password, onChangePassword] = React.useState('');
+    const [wrongPassword, setWrongPassword] = React.useState(false);
+
+
+    const validateLoginAttempt = (credentialsArr, login, password) => {
+        let accesGranted = false;
+        credentialsArr.forEach(elem => {
+            if(login.replace(/ /g,'') == elem['login']){
+                console.log('login found')
+                if(password.replace(/ /g,'') == elem['password']){
+                    navigation.navigate('Welcome');
+                    accesGranted = true;
+                }
+            }
+        })
+        if(!accesGranted){
+            Alert.alert('Wrong username or password');
+        }
+    }
 
     const buttonIsActive = () => {
         if(login.length > 0 && password.length > 0){
@@ -32,9 +56,12 @@ const LoginScreen = () => {
                 onChangeText={text => onChangePassword(text)}>
             </TextInput>
             <Button
-                onPress={(e) =>
+                onPress={() =>
                     {
-                        console.log(login, password);
+                        validateLoginAttempt(routeParam, login, password);
+                        if(wrongPassword){
+                            Alert.alert('You\'ve entered wrong password!')
+                        }
                     }}
                 title="Log in"
                 disabled={buttonIsActive()}

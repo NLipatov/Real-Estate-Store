@@ -1,11 +1,30 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { ImageBackground, StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Image} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 
 
-const WelcomeScreen = (props) => {
+const WelcomeScreen = ({route}) => {
+    React.useEffect(()=>{
+        console.log('effect');
+        if(route.params?.login)
+        {
+            console.log('parameter spotted!')
+            console.log(route.params)
+
+
+            console.log('credentials');
+            credentials.push(route.params)
+            console.log(credentials);
+        }
+        else{
+            console.log('no parameter spotted!')
+        }
+    }, [route.params?.login])
+
+    const [credentials] = useState([]);
+
     const navigation = useNavigation();
     return (
         <ImageBackground 
@@ -23,7 +42,7 @@ const WelcomeScreen = (props) => {
             <TouchableOpacity 
                 activeOpacity={0.8}
                 style={styles.loginButton}
-                onPress={() => navigation.navigate('Login')}>
+                onPress={() => navigation.navigate('Login', credentials)}>
                 <Text 
                     // onPress={() => navigation.navigate('Login')}
                     style={[styles.centerByMaringLNR, styles.blackColor]}>
@@ -35,7 +54,7 @@ const WelcomeScreen = (props) => {
                 style={styles.registerButton}
                 onPress={()=> navigation.navigate('Register')}>
                 <Text 
-                                        style={[styles.centerByMaringLNR, styles.whiteColor]}>
+                    style={[styles.centerByMaringLNR, styles.whiteColor]}>
                     Register
                 </Text>
             </TouchableOpacity>

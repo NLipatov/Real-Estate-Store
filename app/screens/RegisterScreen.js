@@ -34,8 +34,14 @@ const RegisterScreen = () => {
             <Button
                 onPress={(e) =>
                     {
-                        console.log(login, password);
-                        navigation.navigate('Welcome');
+                        navigation.navigate(
+                            {
+                                name: 'Welcome',
+                                // params: { post: "CHLENPIZDA" },
+                                params: {login: login, password: password},
+                                merge: true
+                            }
+                        )
                     }}
                 title="Submit"
                 disabled={buttonIsActive()}
