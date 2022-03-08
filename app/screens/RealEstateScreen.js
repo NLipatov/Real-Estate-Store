@@ -1,10 +1,19 @@
 import React, {useState} from 'react';
 import {Text, SafeAreaView, StyleSheet, View, Platform, Image, ScrollView } from 'react-native';
 import {StatusBar} from 'react-native';
+import {BackHandler} from 'react-native';
+
+
+const BackPressHandler = callback => {
+    BackHandler.addEventListener('hardwareBackPress', () => {
+      return true;
+    });
+}
 
 
 
 const RealEstateScreen = () => {
+    BackPressHandler();
     const [people, setPeople] = React.useState([
         { 
             name: '13,000,000 AED', key: 1, url: 'https://imagevars.gulfnews.com/2017/10/10/1_16a083d2c1d.2103731_3290610138_16a083d2c1d_large.jpg'
@@ -37,8 +46,8 @@ const RealEstateScreen = () => {
             <ScrollView>
             {people.map((item)=> {
                 return (
-                    <View style={{backgroundColor: 'lightgrey'}}>
-                        <View style={{marginBottom: 0, paddingLeft: 10, paddingRight: 10}} key={item.key}>
+                    <View style={{backgroundColor: 'lightgrey'}} key={item.key}>
+                        <View style={{marginBottom: 0, paddingLeft: 10, paddingRight: 10}} >
                             <Image style={{height: 200, marginTop: 10, borderTopLeftRadius: 25}} source={{uri: item.url}}/>
                             <View style={[styles.item, {marginBottom: 10}]} >
                                 <Text>
