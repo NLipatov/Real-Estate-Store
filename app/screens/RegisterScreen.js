@@ -29,7 +29,8 @@ const RegisterScreen = () => {
                 style={styles.input}
                 value={password}
                 placeholder={'Password'}
-                onChangeText={text => onChangePassword(text)}>
+                onChangeText={text => onChangePassword(text)}
+                secureTextEntry={true}>
             </TextInput>
             <Button
                 onPress={(e) =>

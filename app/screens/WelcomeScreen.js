@@ -33,8 +33,7 @@ const WelcomeScreen = ({route}) => {
                 activeOpacity={0.8}
                 style={styles.loginButton}
                 onPress={() => navigation.navigate('Login', credentials)}>
-                <Text 
-                    // onPress={() => navigation.navigate('Login')}
+                <Text
                     style={[styles.centerByMaringLNR, styles.blackColor]}>
                     Login
                 </Text>
