@@ -7,19 +7,9 @@ import { useNavigation } from '@react-navigation/native';
 
 const WelcomeScreen = ({route}) => {
     React.useEffect(()=>{
-        console.log('effect');
         if(route.params?.login)
         {
-            console.log('parameter spotted!')
-            console.log(route.params)
-
-
-            console.log('credentials');
             credentials.push(route.params)
-            console.log(credentials);
-        }
-        else{
-            console.log('no parameter spotted!')
         }
     }, [route.params?.login])
 

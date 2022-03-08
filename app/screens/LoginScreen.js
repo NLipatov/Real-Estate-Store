@@ -3,10 +3,6 @@ import {SafeAreaView ,View, Text, TextInput, StyleSheet, Button, Alert } from 'r
 import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen = ({route}) => {
-    useEffect(() => {
-        console.log('effect');
-      }, [route]);
-
     const routeParam = route.params;
 
     const navigation = useNavigation();
@@ -20,9 +16,8 @@ const LoginScreen = ({route}) => {
         let accesGranted = false;
         credentialsArr.forEach(elem => {
             if(login.replace(/ /g,'') == elem['login']){
-                console.log('login found')
                 if(password.replace(/ /g,'') == elem['password']){
-                    navigation.navigate('Welcome');
+                    navigation.navigate('RealEstate');
                     accesGranted = true;
                 }
             }
