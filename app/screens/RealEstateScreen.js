@@ -29,7 +29,7 @@ const RealEstateScreen = () => {
 
     return (
         <View style={styles.container}>
-            <View style={{height: 100, backgroundColor: 'grey', width: '100%', borderBottomLeftRadius: 25, backgroundColor: 'transparent'}}>
+            <View style={[{height: 100, width: '100%', backgroundColor: 'white'}, styles.headerShadow]}>
                 <View style={{paddingTop: 30}}>
                     <Image style={{resizeMode: 'contain', height: 65, width: '100%'}} source={require("../assets/BSOLogo.png")}/>
                 </View>
@@ -37,14 +37,20 @@ const RealEstateScreen = () => {
             <ScrollView>
             {people.map((item)=> {
                 return (
-                    <View style={{marginBottom: 0}}>
-                        <Image style={{height: 200, marginTop: 100}} source={{uri: item.url}}/>
-                        <View style={styles.item} key={item.key}>
-                            <Text>
-                                {item.name}
-                            </Text>
+                    <View style={{backgroundColor: 'lightgrey'}}>
+                        <View style={{marginBottom: 0, paddingLeft: 10, paddingRight: 10}} key={item.key}>
+                            <Image style={{height: 200, marginTop: 10, borderTopLeftRadius: 25}} source={{uri: item.url}}/>
+                            <View style={[styles.item, {marginBottom: 10}]} >
+                                <Text>
+                                    {item.name}
+                                </Text>
+                                <Text>
+                                    Take a look at this wonderfull house!
+                                </Text>
+                            </View>
                         </View>
                     </View>
+
                 )
             })}
             </ScrollView>
@@ -57,12 +63,25 @@ const RealEstateScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        paddingHorizontal: 0
+        paddingHorizontal: 0,
+        borderRadius: 10
     },
     item: {
-        backgroundColor: 'pink',
-        fontSize: 24
+        backgroundColor: 'white',
+        fontSize: 24,
+        borderBottomRightRadius: 25,
+
+    },
+    headerShadow: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 100,
+            height: 0,
+        },
+        shadowOpacity: 0.37,
+        shadowRadius: 7.49,
+
+        elevation: 0,
     }
 })
 
